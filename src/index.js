@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import DarkMode from "./hooks/DarkMode"
 
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
@@ -9,6 +10,7 @@ import "./styles.scss";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
+  const [darkMode, toggleDarkMode] = DarkMode();
 
   useEffect(() => {
     axios
@@ -20,7 +22,7 @@ const App = () => {
   }, []);
   return (
     <div className="App">
-      <Navbar />
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <Charts coinData={coinData} />
     </div>
   );
